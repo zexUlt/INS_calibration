@@ -1,5 +1,5 @@
+import matplotlib
 import pandas as pd
-# from numрy import *
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.optimize
@@ -67,6 +67,7 @@ def accel_calibration_1():
     plt.subplot(3, 2, 6)
     plt.plot(aggregated_data[:, 2], color='b')
     plt.xlabel('Clocks')
+    plt.gcf().canvas.set_window_title('Accelerator\'s calibration method 1')
     plt.show()
 
     return S_f, b_f[:, 0]
@@ -118,7 +119,7 @@ def gyro_calibration():
 
     print(S_w)
 
-    plt.subplot(3, 2, 1)
+    plt.subplot(3, 2, 1, )
     plt.title('Raw data')
     plt.plot(g1, color='r')
     plt.subplot(3, 2, 3)
@@ -133,6 +134,7 @@ def gyro_calibration():
     plt.plot(aggregated_data[:, 1], color='g')
     plt.subplot(3, 2, 6)
     plt.plot(aggregated_data[:, 2], color='b')
+    plt.gcf().canvas.set_window_title('Gyro calibration')
     plt.show()
 
 
@@ -194,9 +196,12 @@ def accel_calibration_2(S_f0, b_f0):
     plt.subplot(3, 2, 6)
     plt.plot(aggregated_data[:, 2], color='b')
     plt.xlabel('Clocks')
+    plt.gcf().canvas.set_window_title('Accelerator\'s calibration method 2')
     plt.show()
+    
 
 if __name__ == "__main__":
+    matplotlib.use('TkAgg')
     S, b = accel_calibration_1()
-    # gyro_calibration()
+    gyro_calibration()
     accel_calibration_2(S, b)
